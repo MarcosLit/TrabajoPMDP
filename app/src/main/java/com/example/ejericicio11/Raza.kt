@@ -22,6 +22,15 @@ class Raza : AppCompatActivity() {
         var raza = ""
         var cambio : Intent
 
+        var musica = findViewById<ImageView>(R.id.musica)
+        musica.contentDescription=intent.getStringExtra("estado")
+        if (musica.contentDescription.equals("musica")){
+            musica.setImageResource(R.drawable.baseline_music_note_24)
+        }else if (musica.contentDescription.equals("nomusica")){
+            musica.setImageResource(R.drawable.baseline_music_off_24)
+        }
+
+
         elfo.setOnClickListener(){
             imagen.setImageResource(R.drawable.elfo)
             raza="elfo"
@@ -48,11 +57,12 @@ class Raza : AppCompatActivity() {
             else{
                 personaje1.setRaza(raza)
             cambio = Intent(this, PantallaInformativa::class.java)
+                cambio.putExtra("estado", musica.contentDescription.toString())
             startActivity(cambio)
             }
         }
 
-        var musica = findViewById<ImageView>(R.id.musica)
+
         mediaPlayer.isLooping=true
         musica.setOnClickListener(){
             if (musica.contentDescription.equals("musica")){

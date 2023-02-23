@@ -31,6 +31,14 @@ class Mercader : AppCompatActivity() {
         var vendeMenos = findViewById<Button>(R.id.vendeMenos)
         var compraCantidad = findViewById<TextView>(R.id.compraCantidad)
         var vendeCantidad = findViewById<TextView>(R.id.vendeCantidad)
+        var musica = findViewById<ImageView>(R.id.musica)
+        musica.contentDescription=intent.getStringExtra("estado")
+        if (musica.contentDescription.equals("musica")){
+            musica.setImageResource(R.drawable.baseline_music_note_24)
+        }else if (musica.contentDescription.equals("nomusica")){
+            musica.setImageResource(R.drawable.baseline_music_off_24)
+        }
+
 
         comerciar.setOnClickListener(){
             linearOpcion.visibility = (View.INVISIBLE)
@@ -82,11 +90,12 @@ class Mercader : AppCompatActivity() {
 
         continuar.setOnClickListener(){
             cambio = Intent(this, InicioAventura::class.java)
+            cambio.putExtra("estado", musica.contentDescription.toString())
             startActivity(cambio)
         }
 
 
-        var musica = findViewById<ImageView>(R.id.musica)
+
         mediaPlayer.isLooping=true
         musica.setOnClickListener(){
             if (musica.contentDescription.equals("musica")){

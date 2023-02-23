@@ -17,6 +17,14 @@ class Ciudad : AppCompatActivity() {
         var cambio:Intent
         var entrar = findViewById<Button>(R.id.entrar)
         var continar = findViewById<Button>(R.id.continuarCiudad)
+        var musica = findViewById<ImageView>(R.id.musica)
+        musica.contentDescription=intent.getStringExtra("estado")
+        if (musica.contentDescription.equals("musica")){
+            musica.setImageResource(R.drawable.baseline_music_note_24)
+        }else if (musica.contentDescription.equals("nomusica")){
+            musica.setImageResource(R.drawable.baseline_music_off_24)
+        }
+
 
         entrar.setOnClickListener(){
             Toast.makeText(this, "Entrar", Toast.LENGTH_SHORT).show()
@@ -24,10 +32,11 @@ class Ciudad : AppCompatActivity() {
 
         continar.setOnClickListener(){
             cambio = Intent(this, InicioAventura::class.java)
+            cambio.putExtra("estado", musica.contentDescription.toString())
             startActivity(cambio)
         }
 
-        var musica = findViewById<ImageView>(R.id.musica)
+
         mediaPlayer.isLooping=true
         musica.setOnClickListener(){
             if (musica.contentDescription.equals("musica")){

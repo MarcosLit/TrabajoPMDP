@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         var email = findViewById<EditText>(R.id.email)
         var password = findViewById<EditText>(R.id.password)
         var cambio: Intent
+        var musica = findViewById<ImageView>(R.id.musica)
         registrar.setOnClickListener(){
             if (email.text.isNotEmpty() && password.text.isNotEmpty()){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener{
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener{
                     if (it.isSuccessful){
                         cambio = Intent(this, clase::class.java)
+                        cambio.putExtra("estado", musica.contentDescription.toString())
                         startActivity(cambio)
                     }
                     else
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        var musica = findViewById<ImageView>(R.id.musica)
+
         mediaPlayer.isLooping=true
         musica.setOnClickListener(){
             if (musica.contentDescription.equals("musica")){

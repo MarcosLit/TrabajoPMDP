@@ -18,6 +18,14 @@ class clase : AppCompatActivity() {
         var ladron = findViewById<Button>(R.id.ladron)
         var guerrero = findViewById<Button>(R.id.gurrero)
         var berserker = findViewById<Button>(R.id.berserker)
+        var musica = findViewById<ImageView>(R.id.musica)
+        musica.contentDescription=intent.getStringExtra("estado")
+        if (musica.contentDescription.equals("musica")){
+            musica.setImageResource(R.drawable.baseline_music_note_24)
+        }else if (musica.contentDescription.equals("nomusica")){
+            musica.setImageResource(R.drawable.baseline_music_off_24)
+        }
+
 
         var clase = ""
         var cambio : Intent
@@ -48,11 +56,12 @@ class clase : AppCompatActivity() {
             }else{
                 personaje1.setClase(clase)
                 cambio= Intent(this, Raza::class.java)
+                cambio.putExtra("estado", musica.contentDescription.toString())
                 startActivity(cambio)
             }
         }
 
-        var musica = findViewById<ImageView>(R.id.musica)
+
         mediaPlayer.isLooping=true
         musica.setOnClickListener(){
             if (musica.contentDescription.equals("musica")){

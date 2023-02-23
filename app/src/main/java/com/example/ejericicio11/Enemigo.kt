@@ -36,9 +36,17 @@ class Enemigo : AppCompatActivity() {
         var fotoEnemigo = findViewById<ImageView>(R.id.fotoEnemigo)
         var atacar = findViewById<Button>(R.id.atacar)
         var objeto = findViewById<Button>(R.id.objeto)
-
+        var huir2 = findViewById<Button>(R.id.huir2)
         var villano : VillanoClase
 
+
+        var musica = findViewById<ImageView>(R.id.musica)
+        musica.contentDescription=intent.getStringExtra("estado")
+        if (musica.contentDescription.equals("musica")){
+            musica.setImageResource(R.drawable.baseline_music_note_24)
+        }else if (musica.contentDescription.equals("nomusica")){
+            musica.setImageResource(R.drawable.baseline_music_off_24)
+        }
         //Boton Luchar
         luchar.setOnClickListener(){
             accionesLucha.visibility = (View.VISIBLE)
@@ -52,6 +60,7 @@ class Enemigo : AppCompatActivity() {
             if (numero>=5){
                 Toast.makeText(this, "Escapaste sin problemas", Toast.LENGTH_LONG).show()
                 cambio = Intent(this, InicioAventura::class.java)
+                cambio.putExtra("estado", musica.contentDescription.toString())
                 startActivity(cambio)
             }else{
                 Toast.makeText(this, "No pudiste escapar", Toast.LENGTH_LONG).show()
@@ -59,6 +68,7 @@ class Enemigo : AppCompatActivity() {
                 decisionEnemigo.visibility = (View.INVISIBLE)
             }
         }
+
 
         //Frase de codigo para establecer el nombre en la frase de la vida del personaje
         frase.text = resources.getString(R.string.vida_personaje, personaje1.nombre)
@@ -118,6 +128,7 @@ class Enemigo : AppCompatActivity() {
 
                     Thread.sleep(2000)
                     cambio = Intent(this, InicioAventura::class.java)
+                    cambio.putExtra("estado", musica.contentDescription.toString())
                     startActivity(cambio)
                 }
 
@@ -126,6 +137,23 @@ class Enemigo : AppCompatActivity() {
 
             ataqueEnemigo(villano)
         }
+
+
+        huir2.setOnClickListener(){
+            var numero2 = (1..6).random()
+            if (numero2>=5){
+                Toast.makeText(this, "Escapaste sin problemas", Toast.LENGTH_LONG).show()
+                cambio = Intent(this, InicioAventura::class.java)
+                cambio.putExtra("estado", musica.contentDescription.toString())
+                startActivity(cambio)
+                //cambio = Intent(this, InicioAventura::class.java)
+                //startActivity(cambio)
+            }else{
+                Toast.makeText(this, "No pudiste escapar", Toast.LENGTH_LONG).show()
+                ataqueEnemigo(villano)
+            }
+        }
+
 
 
         //Funcion Objeto
@@ -143,7 +171,7 @@ class Enemigo : AppCompatActivity() {
                 Toast.makeText(this, "No puedes superar el maximo de tu vida", Toast.LENGTH_SHORT).show()
         }
 
-        var musica = findViewById<ImageView>(R.id.musica)
+
         mediaPlayer.isLooping=true
         musica.setOnClickListener(){
             if (musica.contentDescription.equals("musica")){
@@ -156,7 +184,6 @@ class Enemigo : AppCompatActivity() {
                 musica.contentDescription="musica"
             }
         }
-
     }
 
     fun ataqueEnemigo(villano : VillanoClase){

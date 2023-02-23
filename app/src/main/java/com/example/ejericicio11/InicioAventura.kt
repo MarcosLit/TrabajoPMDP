@@ -17,22 +17,30 @@ class InicioAventura : AppCompatActivity() {
 
         var dado = findViewById<ImageButton>(R.id.dado)
         var cambio = Intent(this, InicioAventura::class.java)
-
+        var musica = findViewById<ImageView>(R.id.musica)
+        musica.contentDescription=intent.getStringExtra("estado")
+        if (musica.contentDescription.equals("musica")){
+            musica.setImageResource(R.drawable.baseline_music_note_24)
+        }else if (musica.contentDescription.equals("nomusica")){
+            musica.setImageResource(R.drawable.baseline_music_off_24)
+        }
 
 
         dado.setOnClickListener(){
             val numeros = 1..4
-            val numero = numeros.random().toString()
+           val numero = numeros.random().toString()
             when(numero){
                 "1"->cambio= Intent(this, Ciudad::class.java)
                 "2"->cambio= Intent(this, Enemigo::class.java)
                 "3"->cambio= Intent(this, Mercader::class.java)
                 "4"->cambio= Intent(this, Objeto::class.java)
+                else -> {}
             }
+            cambio.putExtra("estado", musica.contentDescription.toString())
             startActivity(cambio)
         }
 
-        var musica = findViewById<ImageView>(R.id.musica)
+
         mediaPlayer.isLooping=true
         musica.setOnClickListener(){
             if (musica.contentDescription.equals("musica")){

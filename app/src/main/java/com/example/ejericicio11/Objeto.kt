@@ -18,6 +18,14 @@ class Objeto : AppCompatActivity() {
 
         var recoger = findViewById<Button>(R.id.recoger)
         var continuarRecoger = findViewById<Button>(R.id.continuarRecoger)
+        var musica = findViewById<ImageView>(R.id.musica)
+        musica.contentDescription=intent.getStringExtra("estado")
+        if (musica.contentDescription.equals("musica")){
+            musica.setImageResource(R.drawable.baseline_music_note_24)
+        }else if (musica.contentDescription.equals("nomusica")){
+            musica.setImageResource(R.drawable.baseline_music_off_24)
+        }
+
 
         recoger.setOnClickListener(){
             if ((personaje1.mochila.getPesoMochila() - articulo.getPeso()) >= 0){
@@ -34,10 +42,11 @@ class Objeto : AppCompatActivity() {
 
         continuarRecoger.setOnClickListener(){
             cambio = Intent(this, InicioAventura::class.java)
+            cambio.putExtra("estado", musica.contentDescription.toString())
             startActivity(cambio)
         }
 
-        var musica = findViewById<ImageView>(R.id.musica)
+
         mediaPlayer.isLooping=true
         musica.setOnClickListener(){
             if (musica.contentDescription.equals("musica")){

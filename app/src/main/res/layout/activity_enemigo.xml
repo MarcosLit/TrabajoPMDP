@@ -108,7 +108,7 @@
 
     <LinearLayout
         android:id="@+id/accionesLucha"
-        android:layout_width="246dp"
+        android:layout_width="346dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:gravity="center"
@@ -133,8 +133,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:text="Objeto" />
+
+        <Button
+            android:id="@+id/huir2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="Huir" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
