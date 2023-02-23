@@ -6,9 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Ciudad">
 
+    <ImageView
+        android:id="@+id/musica"
+        android:layout_width="58dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/baseline_music_note_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="musica"
+        />
+
     <LinearLayout
-        android:layout_width="399dp"
-        android:layout_height="284dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
@@ -16,9 +28,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.327">
+        app:layout_constraintVertical_bias="0.229">
 
         <Button
             android:id="@+id/entrar"
@@ -26,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:minWidth="150dp"
             android:text="Entrar" />
 
         <Button
@@ -34,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:minWidth="150dp"
             android:text="Continuar" />
     </LinearLayout>
 
@@ -41,8 +56,9 @@
         android:id="@+id/imageView"
         android:layout_width="273dp"
         android:layout_height="224dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.427"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ciudad" />

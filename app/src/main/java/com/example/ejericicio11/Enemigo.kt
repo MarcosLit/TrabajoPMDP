@@ -100,14 +100,21 @@ class Enemigo : AppCompatActivity() {
                     villanoNormal.vida=100
                     villanoJefe.vida=200
                     println("El personaje vencio al enemigo. Estado actual de la mochila -> "+ personaje1.mochila.interior.size)
-                    personaje1.mochila.interior.add(articulo)
-                    personaje1.mochila.interior.add(articulo)
-                    personaje1.mochila.interior.add(articulo)
+                    if ((personaje1.mochila.getPesoMochila() - articulo.getPeso()) >= 0){
+                        personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() - articulo.getPeso())
+                        personaje1.mochila.interior.add(articulo)}
+                    if ((personaje1.mochila.getPesoMochila() - articulo.getPeso()) >= 0){
+                        personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() - articulo.getPeso())
+                        personaje1.mochila.interior.add(articulo)}
+                    if ((personaje1.mochila.getPesoMochila() - articulo.getPeso()) >= 0){
+                        personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() - articulo.getPeso())
+                        personaje1.mochila.interior.add(articulo)}
                     println("Se ha añadido tres objetos y 100 monedas al monedero")
                     println("Estado actual de la mochila -> "+personaje1.mochila.interior.size)
 
                     //Falta monedero
                     personaje1.monedero[100] = personaje1.monedero[100]!! + 1
+                    println(personaje1.monedero.size)
 
                     Thread.sleep(2000)
                     cambio = Intent(this, InicioAventura::class.java)
@@ -129,14 +136,26 @@ class Enemigo : AppCompatActivity() {
                 Toast.makeText(this, "Objeto Aplicado", Toast.LENGTH_SHORT).show()
                 personaje1.mochila.interior.removeAt(0)
                 personaje1.vida = personaje1.vida + articulo.vida
+                personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() + articulo.getPeso())
                 vidaPersonaje.progress = personaje1.vida
                 objeto.isEnabled = !personaje1.mochila.interior.isEmpty()
             }else
                 Toast.makeText(this, "No puedes superar el maximo de tu vida", Toast.LENGTH_SHORT).show()
         }
 
-
-
+        var musica = findViewById<ImageView>(R.id.musica)
+        mediaPlayer.isLooping=true
+        musica.setOnClickListener(){
+            if (musica.contentDescription.equals("musica")){
+                mediaPlayer.pause()
+                musica.setImageResource(R.drawable.baseline_music_off_24)
+                musica.contentDescription="nomusica"
+            }else if (musica.contentDescription.equals("nomusica")){
+                mediaPlayer.start()
+                musica.setImageResource(R.drawable.baseline_music_note_24)
+                musica.contentDescription="musica"
+            }
+        }
 
     }
 

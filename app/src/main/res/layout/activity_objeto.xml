@@ -7,24 +7,36 @@
     tools:context=".Objeto">
 
     <ImageView
+        android:id="@+id/musica"
+        android:layout_width="58dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/baseline_music_note_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="musica"
+        />
+
+    <ImageView
         android:id="@+id/imageView5"
         android:layout_width="238dp"
         android:layout_height="265dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="152dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/obj" />
 
     <LinearLayout
-        android:layout_width="288dp"
-        android:layout_height="309dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView5">
 

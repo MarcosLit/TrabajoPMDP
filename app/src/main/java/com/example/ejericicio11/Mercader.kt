@@ -84,5 +84,20 @@ class Mercader : AppCompatActivity() {
             cambio = Intent(this, InicioAventura::class.java)
             startActivity(cambio)
         }
+
+
+        var musica = findViewById<ImageView>(R.id.musica)
+        mediaPlayer.isLooping=true
+        musica.setOnClickListener(){
+            if (musica.contentDescription.equals("musica")){
+                mediaPlayer.pause()
+                musica.setImageResource(R.drawable.baseline_music_off_24)
+                musica.contentDescription="nomusica"
+            }else if (musica.contentDescription.equals("nomusica")){
+                mediaPlayer.start()
+                musica.setImageResource(R.drawable.baseline_music_note_24)
+                musica.contentDescription="musica"
+            }
+        }
     }
 }
