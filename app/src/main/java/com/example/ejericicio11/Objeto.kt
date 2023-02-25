@@ -32,7 +32,7 @@ class Objeto : AppCompatActivity() {
                 personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() - articulo.getPeso())
                 personaje1.mochila.interior.add(articulo)
                 println("Objeto introducido")
-                println("Peso de la mochila cambiado")
+                print("Peso de la mochila cambiado ->")
                 println(personaje1.mochila.getPesoMochila().toString())
                 println(personaje1.mochila.interior.size.toString())
             }else{

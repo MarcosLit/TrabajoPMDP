@@ -48,6 +48,7 @@ class PantallaInformativa : AppCompatActivity() {
         var volver = findViewById<Button>(R.id.volver)
         volver.setOnClickListener(){
             var intent= Intent(this, clase::class.java)
+            intent.putExtra("estado", musica.contentDescription.toString())
             startActivity(intent)
         }
 

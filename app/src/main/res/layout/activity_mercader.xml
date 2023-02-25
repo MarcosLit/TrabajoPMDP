@@ -62,14 +62,14 @@
         android:id="@+id/linearComercio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintHorizontal_bias="0.567"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutComprar"
+        app:layout_constraintTop_toBottomOf="@+id/aceptarTrueque"
         app:layout_constraintVertical_bias="1.0">
 
         <Button
@@ -196,5 +196,17 @@
             android:layout_weight="1"
             android:text="+" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/aceptarTrueque"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Confirmar Venta/Compra"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutComprar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

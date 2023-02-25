@@ -25,6 +25,7 @@ class Mercader : AppCompatActivity() {
         var layoutVenta = findViewById<LinearLayout>(R.id.layoutVenta)
         var comprar = findViewById<Button>(R.id.comprar)
         var vender = findViewById<Button>(R.id.vender)
+        var aceptarTrueque = findViewById<Button>(R.id.aceptarTrueque)
         var compraMas  = findViewById<Button>(R.id.compraMas)
         var compraMenos = findViewById<Button>(R.id.compraMenos)
         var vendeMas = findViewById<Button>(R.id.vendeMas)
@@ -51,18 +52,23 @@ class Mercader : AppCompatActivity() {
             linearOpcion.visibility = (View.VISIBLE)
             layoutVenta.visibility = (View.INVISIBLE)
             layoutComprar.visibility = (View.INVISIBLE)
+            aceptarTrueque.visibility = (View.INVISIBLE)
         }
 
         comprar.setOnClickListener(){
             imagenMercader.setImageResource(R.drawable.obj)
             layoutComprar.visibility = (View.VISIBLE)
             layoutVenta.visibility = (View.INVISIBLE)
+            vendeCantidad.text = "0"
+            aceptarTrueque.visibility = (View.VISIBLE)
         }
 
         vender.setOnClickListener(){
             imagenMercader.setImageResource(R.drawable.mochila)
             layoutComprar.visibility = (View.INVISIBLE)
             layoutVenta.visibility = (View.VISIBLE)
+            compraCantidad.text = "0"
+            aceptarTrueque.visibility = (View.VISIBLE)
         }
 
         compraMas.setOnClickListener(){
@@ -92,6 +98,29 @@ class Mercader : AppCompatActivity() {
             cambio = Intent(this, InicioAventura::class.java)
             cambio.putExtra("estado", musica.contentDescription.toString())
             startActivity(cambio)
+        }
+
+        aceptarTrueque.setOnClickListener(){
+            //compra vende Cantidad
+            if(layoutComprar.visibility == View.VISIBLE){
+            for (i in compraCantidad.text){
+                if ((personaje1.mochila.getPesoMochila() - articulo.getPeso()) >= 0){
+                    personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() - articulo.getPeso())
+                    personaje1.mochila.interior.add(articulo)
+                    print("Peso de la mochila cambiado ->")
+                    println(personaje1.mochila.getPesoMochila().toString())
+                }
+            }
+            }else{
+                for (i in vendeCantidad.text){
+                    if (personaje1.mochila.pesoMochila + articulo.peso <= personaje1.mochila.pesoMochila){
+                        personaje1.mochila.pesoMochila = personaje1.mochila.pesoMochila + articulo.peso
+                        personaje1.mochila.interior.removeAt(0)
+                    }
+                }
+            }
+
+
         }
 
 
