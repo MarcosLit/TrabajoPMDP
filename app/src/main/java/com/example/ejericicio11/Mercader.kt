@@ -103,23 +103,31 @@ class Mercader : AppCompatActivity() {
         aceptarTrueque.setOnClickListener(){
             //compra vende Cantidad
             if(layoutComprar.visibility == View.VISIBLE){
-            for (i in compraCantidad.text){
-                if ((personaje1.mochila.getPesoMochila() - articulo.getPeso()) >= 0){
-                    personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() - articulo.getPeso())
-                    personaje1.mochila.interior.add(articulo)
-                    print("Peso de la mochila cambiado ->")
-                    println(personaje1.mochila.getPesoMochila().toString())
-                }
-            }
-            }else{
-                for (i in vendeCantidad.text){
-                    if (personaje1.mochila.pesoMochila + articulo.peso <= personaje1.mochila.pesoMochila){
-                        personaje1.mochila.pesoMochila = personaje1.mochila.pesoMochila + articulo.peso
-                        personaje1.mochila.interior.removeAt(0)
+                var cont : Int = compraCantidad.text.toString().toInt()
+                do {
+                    if ((personaje1.mochila.getPesoMochila() - articulo.getPeso()) >= 0){
+                        personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() - articulo.getPeso())
+                        personaje1.mochila.interior.add(articulo)
+                        print("Peso de la mochila cambiado -> ")
+                        println(personaje1.mochila.getPesoMochila().toString())
+                        cont--
                     }
-                }
+                }while(cont > 0)
+            }else if (layoutVenta.visibility == View.VISIBLE){
+                var cont2 : Int = vendeCantidad.text.toString().toInt()
+                    do{
+                        if ((personaje1.mochila.getPesoMochila() + articulo.getPeso()) <= 100){
+                            personaje1.mochila.setPesoMochila(personaje1.mochila.getPesoMochila() + articulo.getPeso())
+                            personaje1.mochila.interior.removeAt(0)
+                            print("Peso de la mochila cambiado -> ")
+                            println(personaje1.mochila.getPesoMochila().toString())
+                            cont2--
+                        }
+                }while (cont2 > 0)
             }
 
+            compraCantidad.text = "0"
+            vendeCantidad.text = "0"
 
         }
 
